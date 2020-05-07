@@ -1,15 +1,27 @@
 {
   "name": "simdummy",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Simple tool for HTTP response simulation, automated and load testing",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node test/index.js"
   },
   "author": "Alex Pereverzyev",
-  "repository": {
-    "url": "https://github.com/AlexPereverzyev/simdummy"
-  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexpereverzyev/simdummy"
+  },
+  "bugs": {
+    "url": "https://github.com/alexpereverzyev/issues"
+  },
+  "homepage": "https://github.com/alexpereverzyev/simdummy",
+  "keywords": [
+    "http",
+    "latency",
+    "simulation",
+    "utility",
+    "node"
+  ],
   "dependencies": {}
 }
