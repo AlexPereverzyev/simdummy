@@ -57,7 +57,7 @@ server.start(s =>
     9999
 )
 
-// request event is emited after 
+// request event is emited after settings parsed and limits applied
 server.on('request', (req, res, settings) => {
     console.log('Simulating response')
 
