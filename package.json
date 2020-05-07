@@ -21,6 +21,7 @@
     "latency",
     "simulation",
     "utility",
+    "test",
     "node"
   ],
   "dependencies": {}

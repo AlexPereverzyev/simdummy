@@ -66,6 +66,9 @@ server.on('request', (req, res, settings) => {
 
     // override response body
     settings.response.body = 'Hello, world!'
+
+    // or end response right here
+    res.end()
 })
 
 // stop the server
