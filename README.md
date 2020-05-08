@@ -80,7 +80,7 @@ server.close(err => {
 
 ## Docker
 
-To start simdummy in [Docker container](https://hub.docker.com/repository/docker/alexpereverzyev/simdummy) do:
+To start simdummy in [Docker container](https://hub.docker.com/r/alexpereverzyev/simdummy) do:
 
 ```
 docker run --name sd -p 9999:9999 -d alexpereverzyev/simdummy:0.1.1
