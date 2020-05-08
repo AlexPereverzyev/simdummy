@@ -1,0 +1,7 @@
+node_modules
+.dockerignore
+.gitignore
+.npmignore
+.vscode
+entry.js
+Dockerfile

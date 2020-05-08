@@ -1,0 +1,6 @@
+node_modules
+.dockerignore
+.gitignore
+.npmignore
+.vscode
+Dockerfile
