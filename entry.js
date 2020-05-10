@@ -1,11 +1,7 @@
 "use strict"
 
-const SimServer = require('./lib/simserver')
+const run = require('./').run
 
-const server = new SimServer()
-
-server.start(s => {
-    console.log(`Simulation server started at ${s.address().port}`)
+run((s, p) => {
+    console.log(`Simulation server started at ${p}`)
 })
-
-module.exports = SimServer
