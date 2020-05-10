@@ -1,6 +1,6 @@
 {
   "name": "simdummy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple tool for HTTP response simulation, automated and load testing",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "url": "https://github.com/alexpereverzyev/simdummy"
   },
   "bugs": {
-    "url": "https://github.com/alexpereverzyev/issues"
+    "url": "https://github.com/alexpereverzyev/simdummy/issues"
   },
   "homepage": "https://github.com/alexpereverzyev/simdummy",
   "keywords": [
