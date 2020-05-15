@@ -1,6 +1,6 @@
 {
   "name": "simdummy",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Simple tool for HTTP response simulation, automated and load testing",
   "main": "index.js",
   "scripts": {

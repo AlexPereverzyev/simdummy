@@ -20,7 +20,7 @@ To simulate HTTP response with latency, start listener at custom port:
 ```
 const run = require('simdummy').run
 
-run((server, port) => {
+run((port, stats, server) => {
     console.log(`Simulation server started at ${port}`)
 }, 9999)
 ```
@@ -31,48 +31,60 @@ Then make HTTP call and specify required latency (eg: 200ms) in query string:
 time curl http://localhost:9999/?l=200\&eh=1
 ```
 
+### Testing with Promises
+
 To start HTTP listener to test asynchronous code with promises and async/await:
 
 ```
 const test = require('simdummy').test
 
 it('test async promise', async () => {
-    await test(async (server, port) => {
-        const res = await yourFavoriteHttpClient.get(`http://localhost:${port}`)
-        assert.equal(res.status, 200)
+    await test(async (port, stats, server) => {
+        const res = await yourHttpClient.get(`http://localhost:${port}`)
+        expect(res.status).to.equal(200)
+        expect(stats.calls).to.equal(1)
     })
 })
 ```
+
+Sim server collects basic statistics about number of requests received, responses sent and calls droped. The _stats_ are exposed on sim sever instance as property and passed to _run_ and _test_ callbacks as argument:
+
+- calls - number of requests accepted
+- sents - number of responses sent
+- drops - number of responses dropped
+
+### Testing with Callbacks
 
 To start HTTP listener to test asynchronous code with callbacks, pass _done_ to _test_ call:
 
 ```
 it('test async callback', done => {
-    test((server, port, done) => {
-        yourFavoriteHttpClient.get(`http://localhost:${port}`, res => {
-            assert.equal(res.status, 200)
+    test((port, stats, server, done) => {
+        yourHttpClient.get(`http://localhost:${port}`, res => {
+            expect(res.status).to.equal(200)
+            expect(stats.calls).to.equal(1)
             done()
         })
     }, done)
 })
 ```
 
+### Simulation Settings
 
-## Simulation Options
-
-Available query string parameters:
+Simulation settings are passed as query string parameters:
 
 - l=200 - base latency
 - n=50 - latency noise
 - s=404 - response status
-- bs=1024 - response body size in bytes, rounded to octet
+- eb=1 - request body is piped to response body
 - eh=1 - request headers are stringified to response body
-- d=1 - destroy socket
+- bs=1024 - response body size in bytes, rounded to octet
+- d=1 - destroy request socket
 
 
-## Startup Options
+## Startup Options and Events
 
-Simulation server can be started directly:
+Here is an example of how the simulation server can be started and which events are exposed.
 
 ```
 const SimServer = require('simdummy').SimServer
@@ -92,7 +104,7 @@ server.start(s =>
 
 // request event is emitted after settings parsed and limits applied
 server.on('request', (req, res, settings) => {
-    console.log('Simulating response')
+    console.log('Accepted request')
 
     // override response latency
     setting.latency.actual = 1000
@@ -102,6 +114,20 @@ server.on('request', (req, res, settings) => {
 
     // or end response right here
     res.end()
+})
+
+// response event is emitted before sending response
+server.on('response', (req, res, settings) => {
+    console.log('Sending response')
+
+    // pipe request to response
+    settings.response.echoBody = true
+
+    // or override the whole body
+    settings.response.body = 'Hello, world!'
+
+    // set different status code
+    res.statusCode = 201
 })
 
 // stop the server

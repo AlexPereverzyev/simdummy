@@ -2,6 +2,6 @@
 
 const run = require('./').run
 
-run((s, p) => {
-    console.log(`Simulation server started at ${p}`)
+run(port => {
+    console.info(`Simulation server started at ${port}`)
 })
