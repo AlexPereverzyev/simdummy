@@ -1,6 +1,8 @@
 
 # simdummy
 
+[![npm](https://img.shields.io/npm/v/simdummy.svg?style=flat-square)](https://www.npmjs.org/package/simdummy)
+
 Simple tool for HTTP response simulation, automated and load testing.
 
 When started, server parses query string of incoming requests and responds with simulated latency, status code, JSON payload or any combination of the mentioned above.
