@@ -1,10 +1,10 @@
 {
   "name": "simdummy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple tool for HTTP response simulation, automated and load testing",
   "main": "index.js",
   "scripts": {
-    "start": "node entry.js 9999"
+    "start": "NODE_ENV=production node entry.js 9999"
   },
   "author": "Alex Pereverzyev",
   "license": "MIT",

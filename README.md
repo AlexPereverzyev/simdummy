@@ -82,6 +82,7 @@ Simulation settings are passed as query string parameters:
 - eh=1 - request headers are stringified to response body
 - bs=1024 - response body size in bytes, rounded to octet
 - d=1 - destroy request socket
+- lr=1 - log request to console
 
 
 ## Startup Options and Events
